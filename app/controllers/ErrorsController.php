@@ -49,11 +49,21 @@ class ErrorsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id, $params=1)
 	{
-		$error = Error::findOrFail($id);
+		var_dump($params); exit;
+		if (isset($params['message'])) {
+			$errorMessage = $params['message'];
+		}else{
+			$errorMessage = Error::getDefaultMessage($id);
+		}
+		$response = Response::make($errorMessage, $id);
 
-		return View::make('errors.show', compact('error'));
+		// $response->header('Content-Type', $value);
+
+		return $response;
+
+		// return View::make('errors.show', compact('error'));
 	}
 
 	/**
