@@ -51,7 +51,6 @@ class ErrorsController extends \BaseController {
 	 */
 	public function show($id, $params=1)
 	{
-		var_dump($params); exit;
 		if (isset($params['message'])) {
 			$errorMessage = $params['message'];
 		}else{
